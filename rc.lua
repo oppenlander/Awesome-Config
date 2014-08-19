@@ -75,7 +75,7 @@ local layouts =
 -- }}}
 
 -- {{{ Wallpaper
-beautiful.wallpaper = "/opt/backgrounds/ramona_v_1920.jpg"
+beautiful.wallpaper = "/opt/backgrounds/forest.jpg"
 if beautiful.wallpaper then
     for s = 1, screen.count() do
         gears.wallpaper.maximized(beautiful.wallpaper, s, false)
@@ -311,14 +311,14 @@ globalkeys = awful.util.table.join(
     awful.key({}, "XF86MonBrightnessDown", function ()
           awful.util.spawn("xbacklight -dec 15")
 
-          naughty.notify({ preset = naughty.config.presets.critical,
-                           text = "DEC" })
+          --naughty.notify({ preset = naughty.config.presets.critical,
+                           --text = "DEC" })
     end),
     awful.key({}, "XF86MonBrightnessUp", function ()
           awful.util.spawn("xbacklight -inc 15")
 
-          naughty.notify({ preset = naughty.config.presets.critical,
-                           text = "INC" })
+          --naughty.notify({ preset = naughty.config.presets.critical,
+                           --text = "INC" })
     end)
 )
 
@@ -430,6 +430,9 @@ awful.rules.rules = {
          border_width = 0
       }
     },
+    { rule = { class = "HipChat" },
+      properties = { tag = tags[1][7] }
+    },
     { rule = { class = "Skype" },
       properties = { tag = tags[1][8] }
     },
@@ -509,5 +512,18 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 util.run_once("spotify", nil, nil, 1)
 util.run_once("skype", nil, nil, 1)
+util.run_once("finch", nil, nil, 1)
+
+util.run_once("pcmanfm -d", nil, nil, 1)
+util.run_once("light-locker --lock-after-screensaver 5", nil, nil, 1)
+util.run_once("volumeicon", nil, nil, 1)
+util.run_once("xfce4-power-manager", nil, nil, 1)
+
+-- compton --config /home/andrew/.config/compton.conf -b
+-- pcmanfm -d &
+-- light-locker --lock-after-screensaver 5 &
+-- volumeicon &
+-- xfce4-power-manager
+-- dropboxd &
 
 -- }}}
